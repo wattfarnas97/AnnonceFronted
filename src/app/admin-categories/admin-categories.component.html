@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-header">
+      Gestion des categories
+    </div>
+    <div class="card-body">
+            <button (click)="onNewCat()"type="button" class="btn btn-primary">
+                    <span class="fa fa-plus-circle"></span></button>
+                    <div *ngIf="mode=='new-cat'">
+                            <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
+                                <div class="form-group">
+                                  <label for="name" class="control-label">Nom</label>
+                                  <input type="text" name="name" id="name" ngModel class="form-control" placeholder="name" aria-describedby="helpId">
+                                
+                                </div>
+                                   <button type="button"type="submit" class="btn btn-success">
+                                       save
+                                   </button>
+                            </form>
+           
+                        </div>
+                        <div *ngIf="mode=='edit-cat'">
+                            <form #f="ngForm" (ngSubmit)="onUpdate(f.value)" >
+                                <div class="form-group">
+                                  <label for="name" class="control-label">Nom</label>
+                                  <input type="text" name="name" id="name" ngModel class="form-control" placeholder="name" aria-describedby="helpId"[(ngModel)]="currentCategorie.name">
+                                
+                                </div>
+                                   <button type="button"type="submit" class="btn btn-success">
+                                       Update
+                                   </button>
+                            </form>
+           
+                        </div>
+                        <div *ngIf="mode=='list'">
+      <table class="table table-light" *ngIf="categories" >
+          <thead class="thead-light">
+              <tr>
+                  <th>Name</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+             
+             
+             <p></p>
+     
+              <tr *ngFor="let c of categories._embedded.categories">
+                  <td>{{c.name}}</td>
+                  <td  class="btn-group" role="group" aria-label="Button group">
+                      <button type="button" class="btn btn-danger" (click)="onDelete(c)">
+                         <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                      <button type="button" class="btn btn-primary" (click)="onEdit(c)">
+                            <i class="fas fa-edit    "></i>
+                         </button>
+
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<table  class="table">
+    <tr>
+        <th>Titre</th>
+        <th>Budget</th>
+    </tr>
+    <tr  *ngFor="let a of annonces._embedded.annonces" >
+        <td>{{a.titre}}</td>
+        <td>{{a.budget}}</td>
+    </tr>
+
+</table>
